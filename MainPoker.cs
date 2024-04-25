@@ -67,10 +67,13 @@ namespace Poker
         public static string[] UsernameLabels { get; } = new string[6];
 
         public static List<Hand> Win { get; } = new List<Hand>();
+
         public static string GetCards { get; set; } = @"Assets\Cards\Pack_NewVegas";
-        public static string GetBack { get; set; } = @"Assets\Back_Classic\BackNV.png";
+
+        //public static string GetBack { get; set; } = @"Assets\Back_Classic\BackNV.png";
 
         public static Timer Timer { get; set; } = new Timer();
+
         public static Timer Updates { get; set; } = new Timer();
 
         private int _up = int.MaxValue,
@@ -134,6 +137,7 @@ namespace Poker
             _users.Add(Bot3);
             _users.Add(Bot4);
             _users.Add(Bot5);
+
             _userControls.Add(Player);
             _userControls.Add(Bot1);
             _userControls.Add(Bot2);
@@ -210,21 +214,24 @@ namespace Poker
 
         private async Task Shuffle()
         {
-            var refreshBackImage = new Bitmap(GetBack);
+            var refreshBackImage = new Bitmap(Properties.Resources.BackNV);
             SetPlayerStuff(false);
             MaximizeBox = false;
             MinimizeBox = false;
             bool check = false;
+
             _horizontal = Player.CardsLocation.X;
             _vertical = Player.CardsLocation.Y;
             _imgLocation = ShuffleArray(_imgLocation);
             string[] charsToRemove = { GetCards, ".png", @"\" };
-            for (_i = 0; _i < 17; _i++)
+
+            for (_i = 0; _i < 52; _i++)
             {
                 if (dontRepeat) continue;
                 if (Deck != null) Deck[_i] = Image.FromFile(_imgLocation[_i]);
                 _imgLocation = RemoveStrings(_imgLocation, charsToRemove, _i);
                 if (_reserve != null) _reserve[_i] = int.Parse(_imgLocation[_i]) - 1;
+
                 if (Holder != null)
                 {
                     Holder[_i] = new PictureBox
@@ -236,6 +243,7 @@ namespace Poker
                     };
                     Controls.Add(Holder[_i]);
                 }
+
                 await Task.Delay(150);
                 SetPlayers(Player, _i, ref check, refreshBackImage);
                 SetPlayers(Bot1, _i, ref check, refreshBackImage);
