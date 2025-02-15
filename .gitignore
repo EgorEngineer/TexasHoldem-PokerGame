@@ -1,29 +1,12 @@
 # Visual Studio
 .vs/
 *.suo
-*.user
 *.userosscache
 *.sln.docstates
-*.VC.db
-*.VC.VC.opendb
 
 # Файлы отладки и кэша
 bin/
 obj/
-*.pdb
-*.ilk
-*.ipch
-*.aps
-*.ncb
-*.sdf
-*.opendb
-*.tlog
-*.log
-*.cache
-
-# Автогенерируемые файлы
-*.Designer.cs
-GeneratedFiles/
 
 # NuGet и зависимости
 *.nupkg
@@ -31,5 +14,3 @@ packages/
 project.lock.json
 project.assets.json
 
-# Лог-файлы
-*.log
